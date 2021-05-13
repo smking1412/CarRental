@@ -1,5 +1,6 @@
 package com.shingetsu.datntruong;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,15 +8,28 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.shingetsu.datntruong.Models.User;
 import com.shingetsu.datntruong.Utils.Common;
+
+import org.jetbrains.annotations.NotNull;
 
 public class SignInActivity extends AppCompatActivity {
     private static final String TAG = "ERROR";
@@ -24,12 +38,15 @@ public class SignInActivity extends AppCompatActivity {
     Button btnlogin;
     private TextView btnSignUp;
     FirebaseAuth mAuth;
+    DatabaseReference userRef;
+    FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         mAuth = FirebaseAuth.getInstance();
+
         username = findViewById(R.id.edt_user_name_login);
         password = findViewById(R.id.edt_password);
         btnlogin = findViewById(R.id.btn_login);
@@ -46,7 +63,7 @@ public class SignInActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String user = username.getEditText().getText().toString().trim();
                 String pass = password.getEditText().getText().toString().trim();
-
+                GoToHome(user, pass);
             }
         });
         Bundle bundle = getIntent().getExtras();
@@ -82,7 +99,7 @@ public class SignInActivity extends AppCompatActivity {
         String password = sharedPreferences.getString("Password", "");
         if (!userName.isEmpty() && !password.isEmpty()) {
             setFields(userName, password);
-            GoToHome(userName, password);
+            //GoToHome(userName, password);
 
         }
     }
@@ -102,10 +119,8 @@ public class SignInActivity extends AppCompatActivity {
             mAuth.signInWithEmailAndPassword(UserName, Password).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     pd.dismiss();
+                    checkUserFromFirebase();
 
-                    startActivity(new Intent(SignInActivity.this, HomeActivity.class));
-                    finish();
-                    Toast.makeText(getApplicationContext(), "Welcome " + UserName, Toast.LENGTH_SHORT).show();
                 }
             }).addOnFailureListener(e -> {
                 pd.dismiss();
@@ -114,46 +129,27 @@ public class SignInActivity extends AppCompatActivity {
 
         }
         editor.apply();
-
-
     }
 
-    private void openSignUp() {
-        startActivity(new Intent(SignInActivity.this, SignUpActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK));
-    }
+    private void checkUserFromFirebase() {
+        database = FirebaseDatabase.getInstance();
+        userRef = database.getReference(Common.USER_INFO_REFERENCE)
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-    private boolean validatePassword() {
-        String val = password.getEditText().getText().toString();
-        if (val.isEmpty()) {
-            password.setError("Không được để trống");
-            return false;
-        } else {
-            password.setError(null);
-            password.setErrorEnabled(false);
-            return true;
-        }
-    }
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                Common.userModel = user;
+                startActivity(new Intent(SignInActivity.this, HomeActivity.class));
+                finish();
+                Toast.makeText(getApplicationContext(), "Welcome " + user.getUsername(), Toast.LENGTH_SHORT).show();
+            }
 
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
 
-    private boolean validateUsername() {
-
-        String val = username.getEditText().getText().toString();
-        if (val.isEmpty()) {
-            username.setError("Không được để trống");
-            return false;
-        } else {
-            username.setError(null);
-            username.setErrorEnabled(false);
-            return true;
-        }
-
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == Common.REQUEST_CODE_SIGN_UP && resultCode == RESULT_OK) {
-
-        }
+            }
+        });
     }
 }

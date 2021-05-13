@@ -76,7 +76,8 @@ public class SignUpActivity extends AppCompatActivity {
                 String PhoneNumber = rePhonenumber.getText().toString();
                 String Password = rePassword.getText().toString();
                 String Dob = reDadeofBirth.getText().toString();
-                User user = new User(Name, Email, PhoneNumber, Dob, Password);
+                String Avatar = "";
+                User user = new User(Name, Email, PhoneNumber, Dob, Password,Avatar);
 
 
                 mAuth.createUserWithEmailAndPassword(Email, Password)
@@ -87,7 +88,8 @@ public class SignUpActivity extends AppCompatActivity {
                                     openactivity_signin(Email, Password);
                                     databaseReference = FirebaseDatabase.getInstance().getReference().child("User")
                                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
-                                    databaseReference.push().setValue(user);
+                                    databaseReference.setValue(user);
+                                    Common.userModel = user;
                                     Toast.makeText(getApplicationContext(), "Đăng ký thành công!!", Toast.LENGTH_SHORT).show();
                                     SharedPreferences sharedPreferences = getSharedPreferences("AutoLogin", MODE_PRIVATE);
                                     SharedPreferences.Editor editor = sharedPreferences.edit();

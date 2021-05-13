@@ -6,6 +6,20 @@ public class User {
     private String Phonenumber;
     private String Dateofbirth;
     private String Password;
+    private String avatar;
+
+    public User(String username, String email, String phonenumber, String dateofbirth, String password, String avatar) {
+        Username = username;
+        Email = email;
+        Phonenumber = phonenumber;
+        Dateofbirth = dateofbirth;
+        Password = password;
+        this.avatar = avatar;
+    }
+
+    public User(){
+
+    }
 
     public String getUsername() {
         return Username;
@@ -47,11 +61,11 @@ public class User {
         Password = password;
     }
 
-    public User(String username, String email, String phonenumber, String dateofbirth, String password) {
-        Username = username;
-        Email = email;
-        Phonenumber = phonenumber;
-        Dateofbirth = dateofbirth;
-        Password = password;
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }
