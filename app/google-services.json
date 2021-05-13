@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "671715098588",
+    "firebase_url": "https://car-rental-a2554-default-rtdb.firebaseio.com",
+    "project_id": "car-rental-a2554",
+    "storage_bucket": "car-rental-a2554.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:671715098588:android:6b4831eed39fe970c8d919",
+        "android_client_info": {
+          "package_name": "com.example.carrentalnew"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "671715098588-9rtabclu2866ios3h75jf3urta01h17f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRnLK9Uwfb_Jb3Ow2da60vWahmaQBwZNQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "671715098588-9rtabclu2866ios3h75jf3urta01h17f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:671715098588:android:fbe480e415061ca0c8d919",
+        "android_client_info": {
+          "package_name": "com.example.datncarrental"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "671715098588-9rtabclu2866ios3h75jf3urta01h17f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRnLK9Uwfb_Jb3Ow2da60vWahmaQBwZNQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "671715098588-9rtabclu2866ios3h75jf3urta01h17f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:671715098588:android:c8a225a0476133c7c8d919",
+        "android_client_info": {
+          "package_name": "com.shingetsu.datntruong"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "671715098588-9rtabclu2866ios3h75jf3urta01h17f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRnLK9Uwfb_Jb3Ow2da60vWahmaQBwZNQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "671715098588-9rtabclu2866ios3h75jf3urta01h17f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

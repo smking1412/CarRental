@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignInActivity">
+    <TextView
+        android:id="@+id/car_rental_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="CAR-RENTAL"
+        android:textColor="#24BACD"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:fontFamily="@font/nunito_black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_login_carrent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Đăng Nhập"
+        android:textColor="#24BACD"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/car_rental_login"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@id/car_rental_login"
+        app:layout_constraintTop_toBottomOf="@id/car_rental_login" />
+
+    <TextView
+        android:id="@+id/tv_user_name_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="64dp"
+        android:text="Email"
+        android:textColor="#24BACD"
+        app:layout_constraintStart_toStartOf="@+id/edt_user_name_login"
+        app:layout_constraintTop_toBottomOf="@+id/tv_login_carrent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edt_user_name_login"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:ems="10"
+        android:hint="Nhập email...."
+        android:textColor="#131313"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_user_name_login" >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:background="@drawable/etstyles"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:layout_height="50dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Mật Khẩu"
+        android:textColor="#24BACD"
+        app:layout_constraintStart_toStartOf="@+id/tv_user_name_login"
+        app:layout_constraintTop_toBottomOf="@+id/edt_user_name_login" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edt_password"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:ems="10"
+        android:hint="Nhập mật khẩu"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/edt_user_name_login"
+        app:layout_constraintStart_toStartOf="@+id/edt_user_name_login"
+        app:layout_constraintTop_toBottomOf="@+id/tv_password"
+        app:passwordToggleEnabled="true">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:imeOptions="actionDone"
+            android:background="@drawable/etstyles"
+            android:inputType="textPassword"
+            android:layout_height="50dp"/>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:id="@+id/forgot_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Quên mật khẩu?"
+        android:textColor="#9A9595"
+        app:layout_constraintEnd_toEndOf="@+id/edt_password"
+        app:layout_constraintTop_toBottomOf="@+id/edt_password" />
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/round_button"
+        android:text="Đăng Nhập"
+        android:padding="3dp"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/edt_password"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edt_password"
+        app:layout_constraintTop_toBottomOf="@+id/forgot_password" />
+    <TextView
+        android:id="@+id/tv_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Bạn chưa có tải khoản ? "
+        android:textColor="#B1A5A5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/btn_login" />
+    <TextView
+        android:id="@+id/register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:text="Đăng Ký"
+        android:textColor="#24BACD"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_question"
+        app:layout_constraintStart_toEndOf="@+id/tv_question"
+        app:layout_constraintTop_toTopOf="@+id/tv_question" />
+</androidx.constraintlayout.widget.ConstraintLayout>
