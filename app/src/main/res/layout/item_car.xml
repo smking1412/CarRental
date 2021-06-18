@@ -126,22 +126,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="2100K/ngày"
-                android:gravity="center_vertical"
+                android:gravity="center"
                 android:textColor="#4CAF50"
                 android:paddingLeft="10dp"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:layout_toLeftOf="@id/btn_book_car" />
-            <Button
-                android:id="@+id/btn_book_car"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/blue_rounded_shape"
-                android:padding="8dp"
-                android:text="Chi Tiết"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp" />
+                 />
+
         </RelativeLayout>
     </LinearLayout>
 

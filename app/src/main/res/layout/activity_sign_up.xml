@@ -19,7 +19,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        android:layout_marginTop="128dp"/>
+        android:layout_marginTop="80dp"/>
 
     <TextView
         android:id="@+id/tv_name_signup"
@@ -133,6 +133,33 @@
 
     </EditText>
     <TextView
+        android:id="@+id/tv_address_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Địa chỉ"
+        android:textColor="#24BACD"
+        app:layout_constraintStart_toStartOf="@+id/tv_name_signup"
+        app:layout_constraintTop_toBottomOf="@+id/edt_phone_number" />
+    <EditText
+        android:id="@+id/edt_address_user"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Nhập địa chỉ"
+        android:paddingLeft="15dp"
+        android:background="@drawable/etstyles"
+        android:inputType="text"
+        android:textColor="#131313"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_address_user">
+
+    </EditText>
+    <TextView
         android:id="@+id/tv_password_signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -140,7 +167,7 @@
         android:text="Mật khẩu"
         android:textColor="#24BACD"
         app:layout_constraintStart_toStartOf="@+id/tv_name_signup"
-        app:layout_constraintTop_toBottomOf="@+id/edt_phone_number" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_address_user" />
     <EditText
         android:id="@+id/edt_password_signup"
         android:layout_width="0dp"
@@ -189,7 +216,7 @@
     <Button
         android:id="@+id/btn_sign_up"
         android:layout_width="0dp"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/round_button"
         android:text="Đăng Ký"

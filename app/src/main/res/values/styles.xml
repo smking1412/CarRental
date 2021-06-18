@@ -18,5 +18,9 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="AppTheme.Toolbar" parent="ThemeOverlay.AppCompat.ActionBar" />
+    <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">#C1FFF8</item>
+        <item name="boxStrokeWidth">2dp</item>
+    </style>
 
 </resources>

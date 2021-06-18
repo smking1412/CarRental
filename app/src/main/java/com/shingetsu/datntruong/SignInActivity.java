@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,8 +34,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class SignInActivity extends AppCompatActivity {
     private static final String TAG = "ERROR";
-    TextInputLayout username;
-    TextInputLayout password;
+    EditText username;
+    EditText password;
     Button btnlogin;
     private TextView btnSignUp;
     FirebaseAuth mAuth;
@@ -61,8 +62,8 @@ public class SignInActivity extends AppCompatActivity {
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String user = username.getEditText().getText().toString().trim();
-                String pass = password.getEditText().getText().toString().trim();
+                String user = username.getText().toString().trim();
+                String pass = password.getText().toString().trim();
                 GoToHome(user, pass);
             }
         });
@@ -74,10 +75,10 @@ public class SignInActivity extends AppCompatActivity {
                 setFields(email, pass);
             }
         }
-        password.getEditText().setOnEditorActionListener((textView, i, keyEvent) -> {
+        password.setOnEditorActionListener((textView, i, keyEvent) -> {
             if (i == EditorInfo.IME_ACTION_DONE) {
-                String user = username.getEditText().getText().toString().trim();
-                String pass = password.getEditText().getText().toString().trim();
+                String user = username.getText().toString().trim();
+                String pass = password.getText().toString().trim();
                 GoToHome(user, pass);
                 return true;
             }
@@ -87,8 +88,8 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     private void setFields(String email, String pass) {
-        username.getEditText().setText(email);
-        password.getEditText().setText(pass);
+        username.setText(email);
+        password.setText(pass);
     }
 
     @Override
@@ -108,7 +109,7 @@ public class SignInActivity extends AppCompatActivity {
         ProgressDialog pd = new ProgressDialog(this);
         pd.setCancelable(false);
         pd.setCanceledOnTouchOutside(false);
-        pd.setMessage("Please Wait logging in..");
+        pd.setMessage("Hãy chờ...");
         pd.show();
         SharedPreferences sharedPreferences = getSharedPreferences("AutoLogin", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -139,6 +140,7 @@ public class SignInActivity extends AppCompatActivity {
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                Log.d("snapshot", "onDataChange: "+snapshot);
                 User user = snapshot.getValue(User.class);
                 Common.userModel = user;
                 startActivity(new Intent(SignInActivity.this, HomeActivity.class));

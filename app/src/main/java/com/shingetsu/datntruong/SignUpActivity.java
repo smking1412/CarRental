@@ -32,6 +32,7 @@ public class SignUpActivity extends AppCompatActivity {
     EditText reEmail;
     TextView reDadeofBirth;
     EditText rePhonenumber;
+    EditText reAddress;
     EditText rePassword;
     EditText rePasswordcheck;
     Button btnsignup;
@@ -49,13 +50,14 @@ public class SignUpActivity extends AppCompatActivity {
         reEmail = findViewById(R.id.edt_email_signup);
         reDadeofBirth = findViewById(R.id.edt_birthday);
         rePhonenumber = findViewById(R.id.edt_phone_number);
+        reAddress = findViewById(R.id.edt_address_user);
         rePassword = findViewById(R.id.edt_password_signup);
         rePasswordcheck = findViewById(R.id.edt_password_signup_confirm);
         btnsignup = findViewById(R.id.btn_sign_up);
         reDadeofBirth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(SignUpActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
+
                 openCalendar();
             }
         });
@@ -76,8 +78,9 @@ public class SignUpActivity extends AppCompatActivity {
                 String PhoneNumber = rePhonenumber.getText().toString();
                 String Password = rePassword.getText().toString();
                 String Dob = reDadeofBirth.getText().toString();
+                String Address = reAddress.getText().toString();
                 String Avatar = "";
-                User user = new User(Name, Email, PhoneNumber, Dob, Password,Avatar);
+               User user = new User(Name,Email,PhoneNumber,Dob,Password,Avatar,Address);
 
 
                 mAuth.createUserWithEmailAndPassword(Email, Password)
@@ -116,7 +119,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private boolean validateFields() {
-        return validateUsername() && validateEmail() && validateDateofbirth() && validatePhoneNumber() && validatePassword() && validatePasswordcheck();
+        return validateUsername() && validateEmail() && validateDateofbirth() && validatePhoneNumber() && validateAddress() && validatePassword() && validatePasswordcheck();
     }
 
     private boolean validateUsername() {
@@ -209,6 +212,16 @@ public class SignUpActivity extends AppCompatActivity {
         if (Dob.isEmpty()) {
             reDadeofBirth.setError("Vui lòng chọn ngày tháng năm sinh");
             reDadeofBirth.requestFocus();
+            return false;
+        } else {
+            return true;
+        }
+    }
+    private boolean validateAddress(){
+        String Address = reAddress.getText().toString();
+        if (Address.isEmpty()) {
+            reAddress.setError("Vui lòng nhập địa chỉ");
+            reAddress.requestFocus();
             return false;
         } else {
             return true;

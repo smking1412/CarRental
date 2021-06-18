@@ -42,6 +42,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.shingetsu.datntruong.Models.Car;
 import com.shingetsu.datntruong.Models.User;
 import com.shingetsu.datntruong.Utils.Common;
 import com.shingetsu.datntruong.Utils.UserUtils;
@@ -49,6 +50,7 @@ import com.shingetsu.datntruong.databinding.ActivityHomeBinding;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -67,6 +69,14 @@ public class HomeActivity extends AppCompatActivity {
     private ImageView img_avatar;
 
 
+
+    public static ArrayList<Car> listCar1 = new ArrayList<>();
+    public static ArrayList<Car> listCar2 = new ArrayList<>();
+    public static ArrayList<Car> listCar3 = new ArrayList<>();
+    public static ArrayList<Car> listCar4 = new ArrayList<>();
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +84,36 @@ public class HomeActivity extends AppCompatActivity {
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        rootRef.child("products").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Car car1 = dataSnapshot.getValue(Car.class);
+                    String categoryCar = car1.getCategory();
+                    if (categoryCar.equals(Common.CATEGORY_CAR_1)) {
+                        listCar1.add(car1);
+                    }
+                    if (categoryCar.equals(Common.CATEGORY_CAR_2)) {
+                        listCar2.add(car1);
+                    }
+                    if (categoryCar.equals(Common.CATEGORY_CAR_3)) {
+                        listCar3.add(car1);
+                    }
+                    if (categoryCar.equals(Common.CATEGORY_CAR_4)) {
+                        listCar4.add(car1);
+                    }
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
         setSupportActionBar(binding.appBarHome.toolbar);
 
 //        binding.appBarHome.fab.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +136,8 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
         init();
     }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
@@ -164,6 +206,10 @@ public class HomeActivity extends AppCompatActivity {
         storageReference = FirebaseStorage.getInstance().getReference();
 
         navigationView.setNavigationItemSelectedListener(item -> {
+            if(item.getItemId() == R.id.nav_gallery){
+                startActivity(new Intent(HomeActivity.this, MyTripActivity.class));
+                finish();
+            }
             if (item.getItemId() == R.id.nav_logout) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
                 builder.setTitle("Đăng Xuất").setMessage("Bạn có chắc chắn đăng xuất ?")
@@ -213,6 +259,7 @@ public class HomeActivity extends AppCompatActivity {
                     .into(img_avatar);
         }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

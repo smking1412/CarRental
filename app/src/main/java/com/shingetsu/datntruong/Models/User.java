@@ -7,18 +7,20 @@ public class User {
     private String Dateofbirth;
     private String Password;
     private String avatar;
+    private String address;
 
-    public User(String username, String email, String phonenumber, String dateofbirth, String password, String avatar) {
+    public User() {
+
+    }
+
+    public User(String username, String email, String phonenumber, String dateofbirth, String password, String avatar, String address) {
         Username = username;
         Email = email;
         Phonenumber = phonenumber;
         Dateofbirth = dateofbirth;
         Password = password;
         this.avatar = avatar;
-    }
-
-    public User(){
-
+        this.address = address;
     }
 
     public String getUsername() {
@@ -52,6 +54,13 @@ public class User {
     public void setDateofbirth(String dateofbirth) {
         Dateofbirth = dateofbirth;
     }
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public String getPassword() {
         return Password;
@@ -68,4 +77,7 @@ public class User {
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
+
+
 }
+

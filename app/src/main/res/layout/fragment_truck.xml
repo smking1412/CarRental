@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AllCarFragment">
+    tools:context=".TruckFragment">
 
-<androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/recycle_class"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+   <androidx.recyclerview.widget.RecyclerView
+       android:id="@+id/recycle_truck"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical"/>
 
 </FrameLayout>
